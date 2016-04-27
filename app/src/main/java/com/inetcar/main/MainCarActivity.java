@@ -13,12 +13,12 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.inetcar.around.AroundFragment;
 import com.inetcar.map.MapFragment;
 import com.inetcar.me.MeFragment;
 import com.inetcar.startup.R;
 import com.inetcar.tools.FragmentManager;
 import com.inetcar.tools.WindowTranslucent;
+
 import java.util.ArrayList;
 
 public class MainCarActivity extends FragmentActivity implements MapFragment.MyLocationCallback,
@@ -87,15 +87,12 @@ public class MainCarActivity extends FragmentActivity implements MapFragment.MyL
      */
     public void loadFragment() {
 
-        fragment_list = new ArrayList<Fragment>(3);
+        fragment_list = new ArrayList<Fragment>(2);
 
         MapFragment mapfragment = new MapFragment();
 //        mapfragment.setArguments(bundle);  //传递bundle数据
         fragment_list.add(mapfragment);
 
-        AroundFragment aroundfragment = new AroundFragment();
-//      aroundfragment.setArguments();
-        fragment_list.add(aroundfragment);
 
         MeFragment mefragment = new MeFragment();
 //      mefragment.setArguments();

@@ -1,395 +1,678 @@
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#d0d0d0"
-        >
+        android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/relative_tab_me_userinfo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:background="#0f6ad5"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
 
-            <RelativeLayout
-                android:id="@+id/relative_tab_me_userinfo"
+            <com.inetcar.meg7.widget.CircleImageView
+                android:id="@+id/im_tab_me_user"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:padding="0dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/user_no_login" />
+
+            <!--未登录时显示登陆和注册按钮-->
+            <LinearLayout
+                android:id="@+id/linear_tab_me_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:background="#0f6ad5">
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/im_tab_me_user"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
 
-                <com.inetcar.meg7.widget.CircleImageView
-                    android:id="@+id/im_tab_me_user"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:padding="0dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/user_no_login"/>
+                <Button
+                    android:id="@+id/btn_tab_me_login"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_tab_me_login"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="登陆"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
 
-                <!--未登录时显示登陆和注册按钮-->
+                <Button
+                    android:id="@+id/btn_tab_me_register"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_tab_me_login"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="注册"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <!--登录时显示个人信息-->
+
+            <LinearLayout
+                android:id="@+id/linear_tab_me_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/im_tab_me_user"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="top|center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_tab_me_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="NEW Balance"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_tab_me_userphone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="2dp"
+                    android:text="18792928078"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp" />
+
                 <LinearLayout
-                    android:id="@+id/linear_tab_me_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_alignParentBottom="true"
-                    android:layout_below="@id/im_tab_me_user"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:paddingBottom="10dp"
-                    >
-
-                    <Button
-                        android:id="@+id/btn_tab_me_login"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="登陆"
-                        android:textColor="#ffffff"
-                        android:textSize="18sp"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/bg_tab_me_login"/>
-
-                    <Button
-                        android:id="@+id/btn_tab_me_register"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="注册"
-                        android:textColor="#ffffff"
-                        android:textSize="18sp"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:layout_marginLeft="5dp"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:background="@drawable/bg_tab_me_login"/>
-
-                </LinearLayout>
-
-                <!--登录时显示个人信息-->
-
-                <LinearLayout
-                    android:id="@+id/linear_tab_me_username"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_below="@id/im_tab_me_user"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:gravity="top|center_horizontal"
-                    android:visibility="gone"
-                    >
-
-                    <TextView
-                        android:id="@+id/tv_tab_me_username"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="NEW Balance"
-                        android:textStyle="bold"
-                        android:paddingTop="5dp"
-                        android:textSize="18sp"
-                        android:textColor="#ffffff"
-                        />
-
-                    <TextView
-                        android:id="@+id/tv_tab_me_userphone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="18792928078"
-                        android:paddingTop="2dp"
-
-                        android:textSize="15sp"
-                        android:textColor="#ffffff"
-                        />
+                    android:layout_below="@id/linear_tab_me_username"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/linear_tab_me_username"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginTop="20dp"
-                        android:orientation="horizontal">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <TextView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="1">
+                            android:gravity="center"
+                            android:text="汽车"
+                            android:textColor="#ffffff"
+                            android:textSize="15sp" />
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="汽车"
-                                android:textColor="#ffffff"
-                                android:textSize="15sp"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="5"
-                                android:textColor="#ffffff"
-                                android:textStyle="bold"
-                                android:textSize="15sp"/>
-
-                        </LinearLayout>
-
-
-
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <TextView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="1">
+                            android:gravity="center"
+                            android:text="5"
+                            android:textColor="#ffffff"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="加油卡"
-                                android:textColor="#ffffff"
-                                android:textSize="15sp"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="5"
-                                android:textColor="#ffffff"
-                                android:textStyle="bold"
-                                android:textSize="15sp"/>
-
-                        </LinearLayout>
+                    </LinearLayout>
 
 
-                        <LinearLayout
-                            android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="1">
+                            android:gravity="center"
+                            android:text="加油卡"
+                            android:textColor="#ffffff"
+                            android:textSize="15sp" />
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="足迹"
-                                android:textColor="#ffffff"
-                                android:textSize="15sp"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="5"
-                                android:textColor="#ffffff"
-                                android:textStyle="bold"
-                                android:textSize="15sp"/>
-
-                        </LinearLayout>
-
-
-
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <TextView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="1">
+                            android:gravity="center"
+                            android:text="5"
+                            android:textColor="#ffffff"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="反馈"
-                                android:textColor="#ffffff"
-                                android:textSize="15sp"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="5"
-                                android:textColor="#ffffff"
-                                android:textStyle="bold"
-                                android:textSize="15sp"/>
+                    </LinearLayout>
 
-                        </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="足迹"
+                            android:textColor="#ffffff"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="5"
+                            android:textColor="#ffffff"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="反馈"
+                            android:textColor="#ffffff"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="5"
+                            android:textColor="#ffffff"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
 
-                </LinearLayout>
+            </LinearLayout>
 
-            </RelativeLayout>
+        </RelativeLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginTop="10dp"
+            android:background="#202020"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:text="我的汽车"
+            android:textColor="#000000"
+            android:textSize="16sp"
 
+            android:padding="15dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#202020"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <RelativeLayout
                 android:id="@+id/relative_tab_me_car"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_tab_me_relative"
-                android:layout_marginTop="10dp"
-                android:padding="10dp">
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:padding="15dp">
 
                 <ImageView
                     android:id="@+id/im_tab_me_car"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="8dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/car"
-                    />
-
+                    android:src="@mipmap/car"/>
                 <TextView
+                    android:id="@+id/tv_tab_me_car"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/im_tab_me_car"
-                    android:layout_centerVertical="true"
-                    android:text="我的汽车"
-                    android:textSize="18sp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_alignTop="@id/im_tab_me_car"
+                    android:layout_marginLeft="8dp"
                     android:textColor="#000000"
-                    />
+                    android:textSize="14sp"
+                    android:text="汽车"/>
 
-                <ImageView
-                    android:id="@+id/im_tab_me_car_go"
+                <TextView
+                    android:id="@+id/tv_tab_me_car_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="8dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/go"
-                    />
+                    android:layout_toRightOf="@id/im_tab_me_car"
+                    android:layout_below="@id/tv_tab_me_car"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="3dp"
+                    android:textSize="12sp"
+                    android:textColor="#606060"
+                    android:text="5"/>
+
             </RelativeLayout>
 
+            <View android:layout_width="0.1dp"
+                android:layout_height="match_parent"
+                android:background="#202020"/>
+
+            <RelativeLayout
+                android:id="@+id/relative_tab_me_traffic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:padding="15dp">
+
+                <ImageView
+                    android:id="@+id/im_tab_me_traffic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:src="@mipmap/car"/>
+                <TextView
+                    android:id="@+id/tv_tab_me_traffic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/im_tab_me_traffic"
+                    android:layout_alignTop="@id/im_tab_me_traffic"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:text="交通违章"/>
+
+                <TextView
+                    android:id="@+id/tv_tab_me_traffic_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/im_tab_me_traffic"
+                    android:layout_below="@id/tv_tab_me_traffic"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="3dp"
+                    android:textSize="12sp"
+                    android:textColor="#606060"
+                    android:text="查看详情"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#202020"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <RelativeLayout
                 android:id="@+id/relative_tab_me_card"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_tab_me_relative"
-                android:padding="10dp">
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:padding="15dp">
 
                 <ImageView
                     android:id="@+id/im_tab_me_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="8dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/car"
-                    />
-
+                    android:src="@mipmap/car"/>
                 <TextView
+                    android:id="@+id/tv_tab_me_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/im_tab_me_card"
-                    android:layout_centerVertical="true"
-                    android:text="我的加油卡"
-                    android:textSize="18sp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_alignTop="@id/im_tab_me_card"
+                    android:layout_marginLeft="8dp"
                     android:textColor="#000000"
-                    />
+                    android:textSize="14sp"
+                    android:text="加油卡"/>
 
-                <ImageView
-                    android:id="@+id/im_tab_me_card_go"
+                <TextView
+                    android:id="@+id/tv_tab_me_card_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="8dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/go"
-                    />
+                    android:layout_toRightOf="@id/im_tab_me_card"
+                    android:layout_below="@id/tv_tab_me_card"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="3dp"
+                    android:textSize="12sp"
+                    android:textColor="#606060"
+                    android:text="5"/>
+
             </RelativeLayout>
 
+            <View android:layout_width="0.1dp"
+                android:layout_height="match_parent"
+                android:background="#202020"/>
+
+            <View android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ffffff"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#202020"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginTop="10dp"
+            android:background="#202020"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:text="预约加油"
+            android:textColor="#000000"
+            android:textSize="16sp"
+
+            android:padding="15dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#202020"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <RelativeLayout
-                android:id="@+id/relative_tab_me_secure"
-                android:layout_width="match_parent"
+                android:id="@+id/relative_tab_me_order"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_tab_me_relative"
-                android:padding="10dp">
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:padding="15dp">
 
                 <ImageView
-                    android:id="@+id/im_tab_me_secure"
+                    android:id="@+id/im_tab_me_order"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
+                    android:src="@mipmap/car"/>
+                <TextView
+                    android:id="@+id/tv_tab_me_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/im_tab_me_order"
+                    android:layout_alignTop="@id/im_tab_me_order"
                     android:layout_marginLeft="8dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/car"
-                    />
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:text="订单"/>
 
                 <TextView
+                    android:id="@+id/tv_tab_me_order_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/im_tab_me_secure"
-                    android:layout_centerVertical="true"
-                    android:text="账户安全"
-                    android:textSize="18sp"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#000000"
-                    />
+                    android:layout_toRightOf="@id/im_tab_me_order"
+                    android:layout_below="@id/tv_tab_me_order"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="3dp"
+                    android:textSize="12sp"
+                    android:textColor="#606060"
+                    android:text="5"/>
 
-                <ImageView
-                    android:id="@+id/im_tab_me_secure_go"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="8dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/go"
-                    />
             </RelativeLayout>
 
+            <View android:layout_width="0.1dp"
+                android:layout_height="match_parent"
+                android:background="#202020"/>
+
             <RelativeLayout
-                android:id="@+id/relative_tab_me_setting"
-                android:layout_width="match_parent"
+                android:id="@+id/relative_tab_me_pay"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_tab_me_relative"
-                android:padding="10dp">
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:padding="15dp">
 
                 <ImageView
-                    android:id="@+id/im_tab_me_setting"
+                    android:id="@+id/im_tab_me_pay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
+                    android:src="@mipmap/car"/>
+                <TextView
+                    android:id="@+id/tv_tab_me_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/im_tab_me_pay"
+                    android:layout_alignTop="@id/im_tab_me_pay"
                     android:layout_marginLeft="8dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/car"
-                    />
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:text="支付方式"/>
 
                 <TextView
+                    android:id="@+id/tv_tab_me_pay_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/im_tab_me_setting"
-                    android:layout_centerVertical="true"
-                    android:text="设置"
-                    android:textSize="18sp"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#000000"
-                    />
+                    android:layout_toRightOf="@id/im_tab_me_pay"
+                    android:layout_below="@id/tv_tab_me_pay"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="3dp"
+                    android:textSize="12sp"
+                    android:textColor="#606060"
+                    android:text="支付宝"/>
 
-                <ImageView
-                    android:id="@+id/im_tab_me_setting_go"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="8dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/go"
-                    />
             </RelativeLayout>
         </LinearLayout>
-    </ScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#202020"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginTop="10dp"
+            android:background="#202020"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:text="出行"
+            android:textColor="#000000"
+            android:textSize="16sp"
+
+            android:padding="15dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#202020"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:id="@+id/relative_tab_me_road"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:padding="15dp">
+
+                <ImageView
+                    android:id="@+id/im_tab_me_road"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/car"/>
+                <TextView
+                    android:id="@+id/tv_tab_me_road"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/im_tab_me_road"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:text="路况查询"/>
+
+
+            </RelativeLayout>
+
+            <View android:layout_width="0.1dp"
+                android:layout_height="match_parent"
+                android:background="#202020"/>
+
+            <RelativeLayout
+                android:id="@+id/relative_tab_me_weather"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:padding="15dp">
+
+                <ImageView
+                    android:id="@+id/im_tab_me_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/car"/>
+                <TextView
+                    android:id="@+id/tv_tab_me_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/im_tab_me_weather"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:text="天气查询"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#202020"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginTop="10dp"
+            android:background="#202020"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:text="设置"
+            android:textColor="#000000"
+            android:textSize="16sp"
+
+            android:padding="15dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#202020"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:id="@+id/relative_tab_me_usersetting"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:padding="15dp">
+
+                <ImageView
+                    android:id="@+id/im_tab_me_usersetting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/car"/>
+                <TextView
+                    android:id="@+id/tv_tab_me_usersetting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/im_tab_me_usersetting"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:text="账户设置"/>
+
+
+            </RelativeLayout>
+
+            <View android:layout_width="0.1dp"
+                android:layout_height="match_parent"
+                android:background="#202020"/>
+
+            <RelativeLayout
+                android:id="@+id/relative_tab_me_systemsetting"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:padding="15dp">
+
+                <ImageView
+                    android:id="@+id/im_tab_me_systemsetting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/car"/>
+                <TextView
+                    android:id="@+id/tv_tab_me_systemsetting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/im_tab_me_systemsetting"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:text="系统设置"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#202020"/>
+    </LinearLayout>
+</ScrollView>

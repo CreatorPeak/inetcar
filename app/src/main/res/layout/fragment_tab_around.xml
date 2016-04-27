@@ -4,7 +4,6 @@
     android:background="#e0e0e0"
     >
 
-
     <ScrollView
         android:id="@+id/scroll_tab_around"
         android:layout_width="match_parent"
