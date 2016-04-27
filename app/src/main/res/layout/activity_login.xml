@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0f6ad5"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_login_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:layout_marginLeft="5dp"
+            android:padding="10dp"
+            android:drawableLeft="@mipmap/titlebar_back"
+            android:text="返回"/>
+
+        <TextView
+            android:id="@+id/tv_login_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="直接跳过"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:padding="10dp"/>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#0f6ad5"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome To InetCar"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <RadioGroup
+            android:id="@+id/rg_login_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp">
+
+            <RadioButton
+                android:id="@+id/radiobtn_pwdlogin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="3dp"
+                android:checked="true"
+                android:text="密码登录"
+                android:textColor="@color/login_text"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
+            <RadioButton
+                android:id="@+id/radiobtn_codelogin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="验证码登录"
+                android:textColor="@color/login_text"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
+            <RadioButton
+                android:id="@+id/radiobtn_register"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="手机注册"
+                android:textColor="@color/login_text"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_loginfragnent_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,395 @@
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#d0d0d0"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/relative_tab_me_userinfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="#0f6ad5">
+
+                <com.inetcar.meg7.widget.CircleImageView
+                    android:id="@+id/im_tab_me_user"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:padding="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/user_no_login"/>
+
+                <!--未登录时显示登陆和注册按钮-->
+                <LinearLayout
+                    android:id="@+id/linear_tab_me_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@id/im_tab_me_user"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:paddingBottom="10dp"
+                    >
+
+                    <Button
+                        android:id="@+id/btn_tab_me_login"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="登陆"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/bg_tab_me_login"/>
+
+                    <Button
+                        android:id="@+id/btn_tab_me_register"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="注册"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:layout_marginLeft="5dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:background="@drawable/bg_tab_me_login"/>
+
+                </LinearLayout>
+
+                <!--登录时显示个人信息-->
+
+                <LinearLayout
+                    android:id="@+id/linear_tab_me_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_below="@id/im_tab_me_user"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="top|center_horizontal"
+                    android:visibility="gone"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv_tab_me_username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NEW Balance"
+                        android:textStyle="bold"
+                        android:paddingTop="5dp"
+                        android:textSize="18sp"
+                        android:textColor="#ffffff"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_tab_me_userphone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="18792928078"
+                        android:paddingTop="2dp"
+
+                        android:textSize="15sp"
+                        android:textColor="#ffffff"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/linear_tab_me_username"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="汽车"
+                                android:textColor="#ffffff"
+                                android:textSize="15sp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="5"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="加油卡"
+                                android:textColor="#ffffff"
+                                android:textSize="15sp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="5"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="足迹"
+                                android:textColor="#ffffff"
+                                android:textSize="15sp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="5"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="反馈"
+                                android:textColor="#ffffff"
+                                android:textSize="15sp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="5"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                </LinearLayout>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/relative_tab_me_car"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tab_me_relative"
+                android:layout_marginTop="10dp"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/im_tab_me_car"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/car"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/im_tab_me_car"
+                    android:layout_centerVertical="true"
+                    android:text="我的汽车"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#000000"
+                    />
+
+                <ImageView
+                    android:id="@+id/im_tab_me_car_go"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/go"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_tab_me_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tab_me_relative"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/im_tab_me_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/car"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/im_tab_me_card"
+                    android:layout_centerVertical="true"
+                    android:text="我的加油卡"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#000000"
+                    />
+
+                <ImageView
+                    android:id="@+id/im_tab_me_card_go"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/go"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_tab_me_secure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tab_me_relative"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/im_tab_me_secure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/car"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/im_tab_me_secure"
+                    android:layout_centerVertical="true"
+                    android:text="账户安全"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#000000"
+                    />
+
+                <ImageView
+                    android:id="@+id/im_tab_me_secure_go"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/go"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_tab_me_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tab_me_relative"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/im_tab_me_setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/car"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/im_tab_me_setting"
+                    android:layout_centerVertical="true"
+                    android:text="设置"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#000000"
+                    />
+
+                <ImageView
+                    android:id="@+id/im_tab_me_setting_go"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/go"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>

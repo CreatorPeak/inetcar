@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff">
+
+    <!--
+    <GridView
+        android:id="@+id/gridview_tab_around_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:descendantFocusability="blocksDescendants"
+        android:fadingEdge="none"
+        android:fastScrollEnabled="true"
+        android:scrollingCache="false"
+        android:numColumns="3"
+        android:stretchMode="columnWidth"
+        >
+
+    </GridView>
+    -->
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="horizontal"
+        android:rowCount="3"
+        android:columnCount="3">
+
+        <TextView
+            android:text="电影"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:text="酒店"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:text="美食"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_columnWeight="1"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:text="娱乐"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:text="车站"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:text="银行"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_columnWeight="1"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:text="医院"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:text="景点"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:text="更多"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_columnWeight="1"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+
+    </GridLayout>
+
+</RelativeLayout>

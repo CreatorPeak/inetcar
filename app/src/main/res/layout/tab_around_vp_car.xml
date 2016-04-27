@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="fill"
+    android:background="#ffffff">
+
+    <!--
+    <GridView
+        android:id="@+id/gridview_tab_around_car"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:descendantFocusability="blocksDescendants"
+        android:fadingEdge="none"
+        android:fastScrollEnabled="true"
+        android:scrollingCache="false"
+        android:numColumns="3"
+        android:stretchMode="columnWidth"
+        >
+
+    </GridView>
+    -->
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="horizontal"
+        android:rowCount="3"
+        android:columnCount="3">
+
+        <TextView
+            android:text="预约加油"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:text="交通违章"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:text="路况查询"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:layout_columnWeight="1"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:text="天气查询"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:text="停车场"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:text="汽车美容"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_columnWeight="1"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:text="代驾"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:text="车险"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:text="加油卡"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_columnWeight="1"
+            android:drawableTop="@mipmap/gv_tiku"
+            android:textColor="#000000"/>
+
+
+    </GridLayout>
+
+</RelativeLayout>

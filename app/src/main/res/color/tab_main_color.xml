@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- 当radiobutton选中时 字体用0f6ad5颜色显示 -->
+    <item
+        android:state_checked="true"
+        android:color="#0f6ad5"/>
+
+    <item
+        android:state_selected="true"
+        android:color="#0f6ad5"/>
+
+    <!-- 默认情况下 字体用8e8f94颜色显示 -->
+    <item
+        android:color="#8e8f94"/>
+
+</selector>
