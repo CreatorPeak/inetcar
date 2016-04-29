@@ -93,7 +93,6 @@ public class MainCarActivity extends FragmentActivity implements MapFragment.MyL
 //        mapfragment.setArguments(bundle);  //传递bundle数据
         fragment_list.add(mapfragment);
 
-
         MeFragment mefragment = new MeFragment();
 //      mefragment.setArguments();
         fragment_list.add(mefragment);
@@ -115,7 +114,6 @@ public class MainCarActivity extends FragmentActivity implements MapFragment.MyL
             tv_adress.setText(city+district);
         }
 
-       // Log.d("location","locationCallback:"+city+" "+district);
     }
 
 

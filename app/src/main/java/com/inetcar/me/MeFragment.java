@@ -1,5 +1,7 @@
 package com.inetcar.me;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.inetcar.meg7.widget.CircleImageView;
+import com.inetcar.startup.LoginActivity;
 import com.inetcar.startup.R;
 
 
@@ -25,10 +28,20 @@ public class MeFragment extends Fragment implements View.OnClickListener{
     private Button btn_login;         //登陆按钮
     private Button btn_register;      //注册按钮
 
+    private Context mContext;
+
+    /**
+     * Called when a fragment is first attached to its context.
+     * {@link #onCreate(Bundle)} will be called after this.
+     *
+     * @param context
+     */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onAttach(Context context) {
+        mContext = context;
+        super.onAttach(context);
     }
+
 
     /**
      * Called to have the fragment instantiate its user interface view.
@@ -90,12 +103,16 @@ public class MeFragment extends Fragment implements View.OnClickListener{
             }
             case R.id.btn_tab_me_login: //登陆
             {
-
+                Intent intent = new Intent(mContext, LoginActivity.class);
+                intent.putExtra("page",0);
+                startActivity(intent);
                 break;
             }
             case R.id.btn_tab_me_register: //注册
             {
-
+                Intent intent = new Intent(mContext, LoginActivity.class);
+                intent.putExtra("page",1);
+                startActivity(intent);
                 break;
             }
             default:

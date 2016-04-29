@@ -14,6 +14,6 @@
         <attr name="border_overlay" format="boolean" />
     </declare-styleable>
     <declare-styleable name="PowerImageView">
-        <attr name="auto_play" format="boolean"/>
+        <attr name="auto_play" format="boolean"></attr>
     </declare-styleable>
 </resources>

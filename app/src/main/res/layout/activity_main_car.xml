@@ -138,7 +138,8 @@
             android:textColor="@color/tab_main_color"
             android:textSize="15sp" />
 
-        <!-- 周边tab -->
+        <!--
+
         <RadioButton
             android:id="@+id/tab_main_around"
             android:layout_width="0dp"
@@ -152,6 +153,7 @@
             android:text="周边"
             android:textColor="@color/tab_main_color"
             android:textSize="15sp" />
+        -->
 
         <!-- 个人信息 tab -->
         <RadioButton

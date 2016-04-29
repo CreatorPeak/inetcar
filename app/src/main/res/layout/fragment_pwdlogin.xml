@@ -36,7 +36,7 @@
         android:textSize="16sp"
         android:singleLine="true"
         android:background="@null"
-        android:inputType="phone"
+        android:inputType="textPassword"
         android:layout_marginTop="10dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"

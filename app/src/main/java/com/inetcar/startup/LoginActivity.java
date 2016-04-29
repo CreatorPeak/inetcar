@@ -1,5 +1,6 @@
 package com.inetcar.startup;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -7,12 +8,16 @@ import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.inetcar.main.MainCarActivity;
 import com.inetcar.tools.FragmentManager;
+import com.inetcar.tools.LoadingDialog;
+import com.inetcar.tools.ShowDialogInterface;
 import com.inetcar.tools.WindowTranslucent;
 
 import java.util.ArrayList;
 
-public class LoginActivity extends FragmentActivity implements View.OnClickListener{
+public class LoginActivity extends FragmentActivity implements View.OnClickListener,
+        ShowDialogInterface{
 
     private TextView tv_back;       //返回按钮
     private TextView tv_skip;       //跳过按钮
@@ -20,6 +25,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
 
     private ArrayList<Fragment> mFragments;
     private FragmentManager mFragmentManager;
+    private LoadingDialog mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,8 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
      * 加载并初始化控件
      */
     private void initViews() {
+
+        mDialog = new LoadingDialog(this);
 
         tv_back = (TextView) findViewById(R.id.tv_login_back);
         tv_back.setOnClickListener(this);
@@ -56,21 +64,51 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
         mFragments.add(new RegisterFragment());
     }
 
-
     @Override
     public void onClick(View v) {
 
         switch(v.getId()){
-            case R.id.tv_login_back:
+
+            case R.id.tv_login_skip: //跳过
             {
+                Intent intent = new Intent(LoginActivity.this, MainCarActivity.class);
+                startActivity(intent);
+                this.finish();
                 break;
             }
-            case R.id.tv_login_skip:
+            case R.id.tv_login_back: //返回
             {
+                this.finish();
                 break;
             }
            default:
                break;
         }
+    }
+
+    @Override
+    public void showDialog() {
+
+        if(mDialog!=null && !mDialog.isShowing()){
+            mDialog.show();
+        }
+    }
+
+    @Override
+    public void hideDialog() {
+        if(mDialog!=null && mDialog.isShowing()){
+            mDialog.hide();
+        }
+    }
+
+    /**
+     * Dispatch onStop() to all fragments.  Ensure all loaders are stopped.
+     */
+    @Override
+    protected void onStop() {
+        if(mDialog!=null){
+            mDialog.dismiss();
+        }
+        super.onStop();
     }
 }
