@@ -1,5 +1,7 @@
 package com.inetcar.main;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,8 +17,10 @@ import android.widget.TextView;
 
 import com.inetcar.map.MapFragment;
 import com.inetcar.me.MeFragment;
+import com.inetcar.model.User;
 import com.inetcar.startup.R;
 import com.inetcar.tools.FragmentManager;
+import com.inetcar.tools.ResultCodeUtils;
 import com.inetcar.tools.WindowTranslucent;
 
 import java.util.ArrayList;
@@ -42,15 +46,41 @@ public class MainCarActivity extends FragmentActivity implements MapFragment.MyL
     private View view_menu;             //菜单布局
     private TextView tv_scan;           //扫一扫
 
+    private User mUser;     //当前登录用户
+    private boolean isLogin = false;  //用户是否登录
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         WindowTranslucent.setWindowStatusColor(this, "#0f6ad5");
         setContentView(R.layout.activity_main_car);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(ResultCodeUtils.USERINFO,
+                Context.MODE_PRIVATE);
+
+        mUser = (User) this.getIntent().getSerializableExtra("user");
+        if(mUser!=null){
+            //将用户信息存入SharedPreferences
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("uid",mUser.getUid());
+            editor.putString("uname",mUser.getUname());
+            editor.putString("phone",mUser.getPhone());
+            editor.putString("passwd",mUser.getPasswd());
+            editor.commit();
+            isLogin = true;
+        }else{
+            if(sharedPreferences.getInt("uid",-1)>0){
+                mUser = new User(sharedPreferences.getInt("uid",-1),
+                        sharedPreferences.getString("uname",null),
+                        sharedPreferences.getString("phone",null),
+                        sharedPreferences.getString("passwd",null),
+                        sharedPreferences.getString("photo",null));
+            }
+            isLogin = false;
+        }
         loadFragment();
         initView();
     }
-
 
     public void initView() {
 
@@ -94,7 +124,13 @@ public class MainCarActivity extends FragmentActivity implements MapFragment.MyL
         fragment_list.add(mapfragment);
 
         MeFragment mefragment = new MeFragment();
-//      mefragment.setArguments();
+        if(mUser!=null)
+        {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("user",mUser);
+            bundle.putBoolean("isLogin",isLogin);
+            mefragment.setArguments(bundle);
+        }
         fragment_list.add(mefragment);
     }
 
@@ -123,7 +159,8 @@ public class MainCarActivity extends FragmentActivity implements MapFragment.MyL
         switch (v.getId()){
             case R.id.im_menu_main_title_bar: //菜单键
             {
-                mMenuPopWindow.showAsDropDown(iv_menu,0,40);
+                if(mMenuPopWindow!=null && !mMenuPopWindow.isShowing())
+                    mMenuPopWindow.showAsDropDown(iv_menu,0,40);
                 break;
             }
             case R.id.leftlayout_main_title_bar: //定位按钮

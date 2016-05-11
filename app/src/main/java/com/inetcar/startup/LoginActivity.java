@@ -1,6 +1,8 @@
 package com.inetcar.startup;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import com.inetcar.main.MainCarActivity;
 import com.inetcar.tools.FragmentManager;
 import com.inetcar.tools.LoadingDialog;
+import com.inetcar.tools.ResultCodeUtils;
 import com.inetcar.tools.ShowDialogInterface;
 import com.inetcar.tools.WindowTranslucent;
 
@@ -27,11 +30,19 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
     private FragmentManager mFragmentManager;
     private LoadingDialog mDialog;
 
+    private int mCurrentPage = 0;
+    private SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         WindowTranslucent.setWindowStatusColor(this,"#0f6ad5");
         setContentView(R.layout.activity_login);
+
+        sharedPreferences = this.getSharedPreferences(ResultCodeUtils.USERINFO,
+                Context.MODE_PRIVATE);
+        mCurrentPage = this.getIntent().getIntExtra("page",0);
+
         loadFragments();
         initViews();
     }
@@ -50,7 +61,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
         rg_login = (RadioGroup) findViewById(R.id.rg_login_tab);
 
         mFragmentManager = new FragmentManager(mFragments,rg_login,this,
-                R.id.linear_loginfragnent_container,0);
+                R.id.linear_loginfragnent_container,mCurrentPage);
     }
 
     /**
@@ -59,8 +70,19 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
     private void loadFragments() {
 
         mFragments = new ArrayList<Fragment>(3);
-        mFragments.add(new PwdLoginFragment());
-        mFragments.add(new CodeLoginFragment());
+        PwdLoginFragment pwdLoginFragment = new PwdLoginFragment();
+        CodeLoginFragment codeLoginFragment = new CodeLoginFragment();
+
+        String temp = sharedPreferences.getString("phone",null);
+        if(temp!=null && !temp.trim().isEmpty()){
+            Bundle bundle = new Bundle();
+            bundle.putString("phone",temp);
+            pwdLoginFragment.setArguments(bundle);
+            codeLoginFragment.setArguments(bundle);
+        }
+
+        mFragments.add(pwdLoginFragment);
+        mFragments.add(codeLoginFragment);
         mFragments.add(new RegisterFragment());
     }
 

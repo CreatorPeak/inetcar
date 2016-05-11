@@ -1,5 +1,6 @@
 package com.inetcar.startup;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,6 +20,15 @@ public class CodeLoginFragment extends Fragment implements View.OnClickListener{
     private EditText et_code;
     private Button btn_sendcode;
     private Button btn_login;
+
+    private String mLastLoginphone = null;
+
+    @Override
+    public void onAttach(Context context) {
+        if(this.getArguments()!=null)
+            mLastLoginphone = this.getArguments().getString("phone",null);
+        super.onAttach(context);
+    }
 
     /**
      * Called to have the fragment instantiate its user interface view.
@@ -52,6 +62,7 @@ public class CodeLoginFragment extends Fragment implements View.OnClickListener{
      */
     private void initView() {
         et_phone = (EditText) view_codelogin.findViewById(R.id.et_codelogin_phone);
+        et_phone.setText(mLastLoginphone);
         et_code = (EditText) view_codelogin.findViewById(R.id.et_codelogin_code);
         btn_sendcode = (Button) view_codelogin.findViewById(R.id.btn_codelogin_send_code);
         btn_sendcode.setOnClickListener(this);

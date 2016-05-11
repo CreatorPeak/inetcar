@@ -34,6 +34,7 @@ public class FragmentManager implements RadioGroup.OnCheckedChangeListener{
         FragmentTransaction transaction= activity.getSupportFragmentManager().beginTransaction();
         transaction.add(fragmentId,fragment_list.get(currentPage));
         transaction.commit();
+        this.rg_tab.check(this.rg_tab.getChildAt(currentPage).getId());
         this.rg_tab.setOnCheckedChangeListener(this);
     }
 

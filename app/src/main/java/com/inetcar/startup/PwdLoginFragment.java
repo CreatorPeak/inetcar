@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.inetcar.main.MainCarActivity;
 import com.inetcar.model.User;
+import com.inetcar.tools.MyResult;
 import com.inetcar.tools.NetWorkUtils;
 import com.inetcar.tools.ResultCodeUtils;
 import com.inetcar.tools.ShowDialogInterface;
@@ -50,12 +51,16 @@ public class PwdLoginFragment extends Fragment implements View.OnClickListener{
     private Gson mGson;
     private User user;
 
+    private String mLastLoginphone = null;     //上次登录的手机号
+
     private ShowDialogInterface mDialog;
 
     @Override
     public void onAttach(Context context) {
         mContext = context;
         mDialog = (ShowDialogInterface)this.getActivity();
+        if(this.getArguments()!=null)
+            mLastLoginphone = this.getArguments().getString("phone",null);
         super.onAttach(context);
     }
 
@@ -92,25 +97,21 @@ public class PwdLoginFragment extends Fragment implements View.OnClickListener{
      * 加载控件并初始化
      */
     private void initView() {
-
-
         btn_login = (Button) view_pwdlogin.findViewById(R.id.btn_pwdlogin);
         btn_login.setOnClickListener(this);
         tv_forgetpwd = (TextView) view_pwdlogin.findViewById(R.id.tv_pwdlogin_forgetpwd);
         tv_forgetpwd.setOnClickListener(this);
         et_phone = (EditText) view_pwdlogin.findViewById(R.id.et_pwdlogin_phone);
+        et_phone.setText(mLastLoginphone);
         et_pwd = (EditText) view_pwdlogin.findViewById(R.id.et_pwdlogin_pwd);
-
     }
 
     @Override
     public void onClick(View v) {
-
         switch (v.getId()){
             case R.id.btn_pwdlogin:   //登录
             {
                 login();
-
                 break;
             }
             case R.id.tv_pwdlogin_forgetpwd: //忘记密码
@@ -170,14 +171,42 @@ public class PwdLoginFragment extends Fragment implements View.OnClickListener{
                 {
                     String result = (String) msg.obj;
                     Log.d("user", result);
-                    user = mGson.fromJson(result, User.class);
-                    if(user!=null){
 
-                        Toast.makeText(mContext,"登录成功",Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(mContext, MainCarActivity.class);
-                        intent.putExtra("user",user);
-                        mContext.startActivity(intent);
-                        activity.finishActivity();
+                    MyResult tempMyResult = mGson.fromJson(result, MyResult.class);
+                    if(tempMyResult!=null){
+                       switch (tempMyResult.getStatus()){
+                           case 302:    //用户不存在
+                           {
+                               Toast.makeText(mContext,"该手机号未注册",Toast.LENGTH_SHORT).show();
+                               break;
+                           }
+                           case 303:    //手机号与密码不匹配
+                           {
+                               Toast.makeText(mContext,"手机号与密码不匹配，请重新输入",
+                                       Toast.LENGTH_SHORT).show();
+                               break;
+                           }
+                           case 304:    //登录成功，返回User信息
+                           {
+                               user = mGson.fromJson(tempMyResult.getMsg(), User.class);
+                               if(user!=null){
+
+                                   Toast.makeText(mContext,"登录成功",Toast.LENGTH_SHORT).show();
+                                   Intent intent = new Intent(mContext, MainCarActivity.class);
+                                   intent.putExtra("user",user);
+                                   mContext.startActivity(intent);
+                                   if(activity!=null)
+                                       activity.finishActivity();
+                               }else{
+                                   Toast.makeText(mContext,"数据解析异常",Toast.LENGTH_SHORT).show();
+                               }
+                               break;
+                           }
+                           default:
+                               break;
+                       }
+                    }else{
+                        Toast.makeText(mContext,"数据解析异常",Toast.LENGTH_SHORT).show();
                     }
                     break;
                 }

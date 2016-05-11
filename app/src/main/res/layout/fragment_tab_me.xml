@@ -1,7 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#eeeeee">
+    android:background="#f5f5f9">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,7 +73,7 @@
             <!--登录时显示个人信息-->
 
             <LinearLayout
-                android:id="@+id/linear_tab_me_username"
+                android:id="@+id/linear_tab_me_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/im_tab_me_user"
@@ -107,7 +107,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_below="@id/linear_tab_me_username"
+                    android:layout_below="@id/linear_tab_me_user"
                     android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
@@ -225,7 +225,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
             android:layout_marginTop="10dp"
-            android:background="#202020"/>
+            android:background="#a5a5a5"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -238,7 +238,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
-            android:background="#202020"/>
+            android:background="#a5a5a5"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -277,14 +277,14 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="3dp"
                     android:textSize="12sp"
-                    android:textColor="#606060"
+                    android:textColor="#a5a5a5"
                     android:text="5"/>
 
             </RelativeLayout>
 
             <View android:layout_width="0.1dp"
                 android:layout_height="match_parent"
-                android:background="#202020"/>
+                android:background="#a5a5a5"/>
 
             <RelativeLayout
                 android:id="@+id/relative_tab_me_traffic"
@@ -320,7 +320,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="3dp"
                     android:textSize="12sp"
-                    android:textColor="#606060"
+                    android:textColor="#a5a5a5"
                     android:text="查看详情"/>
 
             </RelativeLayout>
@@ -329,7 +329,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
-            android:background="#202020"/>
+            android:background="#a5a5a5"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -368,14 +368,14 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="3dp"
                     android:textSize="12sp"
-                    android:textColor="#606060"
+                    android:textColor="#a5a5a5"
                     android:text="5"/>
 
             </RelativeLayout>
 
             <View android:layout_width="0.1dp"
                 android:layout_height="match_parent"
-                android:background="#202020"/>
+                android:background="#a5a5a5"/>
 
             <View android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -385,13 +385,13 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
-            android:background="#202020"/>
+            android:background="#a5a5a5"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
             android:layout_marginTop="10dp"
-            android:background="#202020"/>
+            android:background="#a5a5a5"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -404,7 +404,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
-            android:background="#202020"/>
+            android:background="#a5a5a5"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -443,14 +443,14 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="3dp"
                     android:textSize="12sp"
-                    android:textColor="#606060"
+                    android:textColor="#a5a5a5"
                     android:text="5"/>
 
             </RelativeLayout>
 
             <View android:layout_width="0.1dp"
                 android:layout_height="match_parent"
-                android:background="#202020"/>
+                android:background="#a5a5a5"/>
 
             <RelativeLayout
                 android:id="@+id/relative_tab_me_pay"
@@ -486,7 +486,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="3dp"
                     android:textSize="12sp"
-                    android:textColor="#606060"
+                    android:textColor="#a5a5a5"
                     android:text="支付宝"/>
 
             </RelativeLayout>
@@ -495,13 +495,13 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
-            android:background="#202020"/>
+            android:background="#a5a5a5"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
             android:layout_marginTop="10dp"
-            android:background="#202020"/>
+            android:background="#a5a5a5"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -514,7 +514,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
-            android:background="#202020"/>
+            android:background="#a5a5a5"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -550,7 +550,7 @@
 
             <View android:layout_width="0.1dp"
                 android:layout_height="match_parent"
-                android:background="#202020"/>
+                android:background="#a5a5a5"/>
 
             <RelativeLayout
                 android:id="@+id/relative_tab_me_weather"
@@ -584,13 +584,13 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
-            android:background="#202020"/>
+            android:background="#a5a5a5"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
             android:layout_marginTop="10dp"
-            android:background="#202020"/>
+            android:background="#a5a5a5"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -603,7 +603,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
-            android:background="#202020"/>
+            android:background="#a5a5a5"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -639,7 +639,7 @@
 
             <View android:layout_width="0.1dp"
                 android:layout_height="match_parent"
-                android:background="#202020"/>
+                android:background="#a5a5a5"/>
 
             <RelativeLayout
                 android:id="@+id/relative_tab_me_systemsetting"
@@ -673,6 +673,6 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
-            android:background="#202020"/>
+            android:background="#a5a5a5"/>
     </LinearLayout>
 </ScrollView>
