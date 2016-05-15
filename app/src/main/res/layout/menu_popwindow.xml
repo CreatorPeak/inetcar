@@ -28,6 +28,24 @@
         android:background="#ffffff"/>
 
     <TextView
+        android:id="@+id/tv_menu_logoff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="15sp"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@mipmap/scan"
+        android:text="注销账户"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_marginTop="5dp"
+        android:background="#ffffff"/>
+
+    <TextView
         android:id="@+id/tv_menu_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+
 public class NetWorkUtils {
 
     public final static String serverpath="http://10.13.33.63:8080/inetCar";
@@ -66,4 +67,26 @@ public class NetWorkUtils {
         }
         return null;
     }
+
+    /**
+     * 上传图片文件
+     * @param path      servlet地址
+     * @param fileBody  图片文件
+     * @param strBody   图片描述
+     */
+//    public static String upLoad(String path, FileBody fileBody, StringBody strBody) throws IOException {
+//
+////        HttpClient client = new DefaultHttpClient();
+////        HttpPost request = new HttpPost(serverpath+path);
+////        //MultipartEntity entity = new MultipartEntity();
+////        //entity.addPart("photo",fileBody);
+////        //entity.addPart("phone",strBody);
+////       // request.setEntity(entity);
+////        HttpResponse response = client.execute(request);
+////        if(response.getStatusLine().getStatusCode()==HttpStatus.SC_OK){
+////            InputStream in = response.getEntity().getContent();
+////            return getUTF(in);
+////        }
+//        return null;
+//    }
 }

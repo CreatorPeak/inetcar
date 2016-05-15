@@ -247,7 +247,7 @@ public class PwdLoginFragment extends Fragment implements View.OnClickListener{
         @Override
         protected Void doInBackground(Void... params) {
 
-            ArrayList<NameValuePair> param = new ArrayList<NameValuePair>(2);
+            ArrayList<NameValuePair> param = new ArrayList<NameValuePair>(6);
             param.add(new BasicNameValuePair("phone",phone));
             param.add(new BasicNameValuePair("passwd",passwd));
             try {

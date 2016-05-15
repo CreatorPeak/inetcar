@@ -1,6 +1,7 @@
 package com.inetcar.tools;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.util.TypedValue;
@@ -48,7 +49,7 @@ public class WindowTranslucent {
 
     }
     //手机屏幕顶部状态栏高度
-    public static int getStatusBarHeight(Activity ac) {
+    public static int getStatusBarHeight(Context ac) {
         Class<?> c = null;
         Object obj = null;
         Field field = null;

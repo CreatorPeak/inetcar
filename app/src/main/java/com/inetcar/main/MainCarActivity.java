@@ -1,7 +1,11 @@
 package com.inetcar.main;
 
+import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,11 +18,16 @@ import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.inetcar.map.MapFragment;
 import com.inetcar.me.MeFragment;
+import com.inetcar.model.Car;
 import com.inetcar.model.User;
+import com.inetcar.startup.LoginActivity;
 import com.inetcar.startup.R;
+import com.inetcar.tools.DBOpenHelper;
 import com.inetcar.tools.FragmentManager;
 import com.inetcar.tools.ResultCodeUtils;
 import com.inetcar.tools.WindowTranslucent;
@@ -45,9 +54,20 @@ public class MainCarActivity extends FragmentActivity implements MapFragment.MyL
     private PopupWindow mMenuPopWindow; //菜单弹出框
     private View view_menu;             //菜单布局
     private TextView tv_scan;           //扫一扫
+    private TextView tv_logoff;           //注销
+    private TextView tv_logout;           //推出系统
 
     private User mUser;     //当前登录用户
     private boolean isLogin = false;  //用户是否登录
+    private Gson mGson;
+
+    private Car car;    //扫描结果
+
+    private MeFragment mefragment;
+
+
+
+    private DBOpenHelper dbhelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +77,8 @@ public class MainCarActivity extends FragmentActivity implements MapFragment.MyL
 
         SharedPreferences sharedPreferences = getSharedPreferences(ResultCodeUtils.USERINFO,
                 Context.MODE_PRIVATE);
+
+        mGson = new Gson();
 
         mUser = (User) this.getIntent().getSerializableExtra("user");
         if(mUser!=null){
@@ -80,12 +102,30 @@ public class MainCarActivity extends FragmentActivity implements MapFragment.MyL
         }
         loadFragment();
         initView();
+        setUpDB();
     }
 
-    public void initView() {
+    /**
+     * 创建本地数据库
+     */
+    private void setUpDB() {
+        if(isLogin && mUser!=null){
+            dbhelper = new DBOpenHelper(this.getApplicationContext(),mUser.getPhone()+".db",null,1);
+            SQLiteDatabase db = dbhelper.getWritableDatabase();
+            db.execSQL("create table if not exists car(cid integer primary key," +
+                    "brand text not null,type text not null,platenumber text not null," +
+                    "enginenumber text not null,bodylevel text not null,mileage integer not null," +
+                    "gasoline integer not null,engine integer not null," +
+                    "transmission integer not null,light integer not null);");
+            db.close();
+        }
+
+    }
+
+    private void initView() {
 
         left_titlebar = (RelativeLayout) findViewById(R.id.leftlayout_main_title_bar);
-        left_titlebar.setOnClickListener(this);
+        //left_titlebar.setOnClickListener(this);
         tv_adress = (TextView) findViewById(R.id.tv_left_main_title_bar);
 
         iv_menu = (ImageView) findViewById(R.id.im_menu_main_title_bar);
@@ -109,6 +149,12 @@ public class MainCarActivity extends FragmentActivity implements MapFragment.MyL
 
         tv_scan = (TextView) view_menu.findViewById(R.id.tv_menu_scan);
         tv_scan.setOnClickListener(this);
+        tv_logoff = (TextView) view_menu.findViewById(R.id.tv_menu_logoff);
+        tv_logoff.setOnClickListener(this);
+        tv_logout = (TextView) view_menu.findViewById(R.id.tv_menu_logout);
+        tv_logout.setOnClickListener(this);
+
+
     }
 
 
@@ -117,13 +163,13 @@ public class MainCarActivity extends FragmentActivity implements MapFragment.MyL
      */
     public void loadFragment() {
 
-        fragment_list = new ArrayList<Fragment>(2);
+        fragment_list = new ArrayList<Fragment>(6);
 
         MapFragment mapfragment = new MapFragment();
 //        mapfragment.setArguments(bundle);  //传递bundle数据
         fragment_list.add(mapfragment);
 
-        MeFragment mefragment = new MeFragment();
+        mefragment = new MeFragment();
         if(mUser!=null)
         {
             Bundle bundle = new Bundle();
@@ -156,6 +202,8 @@ public class MainCarActivity extends FragmentActivity implements MapFragment.MyL
     @Override
     public void onClick(View v) {
 
+        if(mMenuPopWindow!=null && mMenuPopWindow.isShowing())
+            mMenuPopWindow.dismiss();
         switch (v.getId()){
             case R.id.im_menu_main_title_bar: //菜单键
             {
@@ -173,10 +221,102 @@ public class MainCarActivity extends FragmentActivity implements MapFragment.MyL
             }
             case R.id.tv_menu_scan: //扫一扫按钮
             {
+                if(!getLoginStatus()){
+                    Toast.makeText(this,"尚未登录",Toast.LENGTH_SHORT);
+                    Intent intent = new Intent(MainCarActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Intent intent = new Intent(MainCarActivity.this,CameraActivity.class);
+                    startActivityForResult(intent,ResultCodeUtils.CAMERA_SACN);
+                }
+                break;
+            }
+            case R.id.tv_menu_logoff:
+            {
+                if(!getLoginStatus()){
+                    Toast.makeText(this,"尚未登录",Toast.LENGTH_SHORT);
+                }else{
+
+                }
+                break;
+            }
+            case R.id.tv_menu_logout:
+            {
                 break;
             }
             default:
                 break;
         }
+    }
+
+    /**
+     * 获取用户的登录状态
+     * @return
+     */
+    private boolean getLoginStatus(){
+        if(isLogin)
+            return true;
+        isLogin = mefragment.getLoginStatus();
+        mUser = mefragment.getLoginUser();
+        setUpDB();
+        return isLogin;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if(requestCode==ResultCodeUtils.CAMERA_SACN){
+            if(resultCode== Activity.RESULT_OK){
+                String result = data.getStringExtra("result");
+                try {
+                    car = mGson.fromJson(result, Car.class);
+                    Intent intent = new Intent(MainCarActivity.this,ScanCarActivity.class);
+                    intent.putExtra("car",car);
+                    intent.putExtra("uid",mUser.getUid());
+                    startActivityForResult(intent,ResultCodeUtils.ADD_CAR);
+                }catch (RuntimeException e){
+                    e.printStackTrace();
+                    Toast.makeText(this,"请扫描汽车二维码",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }else if(requestCode==ResultCodeUtils.ADD_CAR){
+            int cid = data.getIntExtra("cid",0);    //服务器返回的汽车id
+            saveCar(cid,car);
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    /**
+     * 将结果保存在本地
+     * @param cid
+     * @param car
+     */
+    private void saveCar(int cid,Car car){
+
+        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        ContentValues value = new ContentValues();
+        value.put("cid",cid);
+        value.put("brand",car.getBrand());
+        value.put("type",car.getType());
+        value.put("platenumber",car.getPlateNumber());
+        value.put("enginenumber",car.getEngineNumber());
+        value.put("bodylevel",car.getBodyLevel());
+        value.put("mileage",car.getMileage());
+        value.put("gasoline",car.getGasoline());
+        value.put("engine",car.getEnginePerformance()-'0');
+        value.put("transmission",car.getTransmissionPerformance()-'0');
+        value.put("light",car.getLightPerformance()-'0');
+
+        db.insert("car",null,value);
+        db.close();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        this.moveTaskToBack(true);
     }
 }

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="#ffffff"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0f6ad5"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/tv_back_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:layout_marginLeft="5dp"
+            android:padding="10dp"
+            android:drawableLeft="@mipmap/titlebar_back"
+            android:text="返回"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="扫描结果"
+            android:textSize="16sp"
+            android:textColor="#ffffff"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp">
+
+        <ImageView
+            android:id="@+id/img_caricon_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:layout_centerHorizontal="true"
+            android:src="@raw/mg"/>
+
+        <TextView
+            android:id="@+id/tv_brand_left_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_caricon_scancar"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:text="品       牌："
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+        <TextView
+            android:id="@+id/tv_brand_right_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_brand_left_scancar"
+            android:layout_alignBottom="@+id/tv_brand_left_scancar"
+            android:layout_toRightOf="@+id/tv_brand_left_scancar"
+            android:text="阿斯顿马丁"
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/tv_type_left_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@id/tv_brand_left_scancar"
+            android:layout_marginTop="8dp"
+            android:text="型       号："
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+        <TextView
+            android:id="@+id/tv_type_right_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_type_left_scancar"
+            android:layout_alignBottom="@+id/tv_type_left_scancar"
+            android:layout_toRightOf="@+id/tv_type_left_scancar"
+            android:text="阿斯顿马丁"
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/tv_platenumber_left_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_type_left_scancar"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="20dp"
+            android:text="车       牌："
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+        <TextView
+            android:id="@+id/tv_platenumber_right_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_platenumber_left_scancar"
+            android:layout_alignBottom="@+id/tv_platenumber_left_scancar"
+            android:layout_toRightOf="@+id/tv_platenumber_left_scancar"
+            android:text="京A66666"
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/tv_enginenumber_left_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_platenumber_left_scancar"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="20dp"
+            android:text="发动机号："
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+        <TextView
+            android:id="@+id/tv_enginenumber_right_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_enginenumber_left_scancar"
+            android:layout_alignBottom="@+id/tv_enginenumber_left_scancar"
+            android:layout_toRightOf="@+id/tv_enginenumber_left_scancar"
+            android:text="京A66666"
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/tv_bodylevel_left_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_enginenumber_left_scancar"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="20dp"
+            android:text="车身级别："
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+        <TextView
+            android:id="@+id/tv_bodylevel_right_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_bodylevel_left_scancar"
+            android:layout_alignBottom="@+id/tv_bodylevel_left_scancar"
+            android:layout_toRightOf="@+id/tv_bodylevel_left_scancar"
+            android:text="4门5座"
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/tv_mileage_left_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_bodylevel_left_scancar"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="20dp"
+            android:text="里  程  数："
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+        <TextView
+            android:id="@+id/tv_mileage_right_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_mileage_left_scancar"
+            android:layout_alignBottom="@+id/tv_mileage_left_scancar"
+            android:layout_toRightOf="@+id/tv_mileage_left_scancar"
+            android:text="1000公里"
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/tv_gasline_left_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_mileage_left_scancar"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="20dp"
+            android:text="汽  油  量："
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+        <TextView
+            android:id="@+id/tv_gasline_right_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_gasline_left_scancar"
+            android:layout_alignBottom="@+id/tv_gasline_left_scancar"
+            android:layout_toRightOf="@+id/tv_gasline_left_scancar"
+            android:text="85%"
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/tv_engineperformance_left_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_gasline_left_scancar"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="20dp"
+            android:text="发  动  机："
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+        <TextView
+            android:id="@+id/tv_engineperformance_right_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_engineperformance_left_scancar"
+            android:layout_alignBottom="@+id/tv_engineperformance_left_scancar"
+            android:layout_toRightOf="@+id/tv_engineperformance_left_scancar"
+            android:text="好"
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/tv_transmisionperformance_left_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_engineperformance_left_scancar"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="20dp"
+            android:text="变  速  器："
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+        <TextView
+            android:id="@+id/tv_transmissionperformance_right_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_transmisionperformance_left_scancar"
+            android:layout_alignBottom="@+id/tv_transmisionperformance_left_scancar"
+            android:layout_toRightOf="@+id/tv_transmisionperformance_left_scancar"
+            android:text="好"
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/tv_light_left_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_transmisionperformance_left_scancar"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="20dp"
+            android:text="车        灯："
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+        <TextView
+            android:id="@+id/tv_light_right_scancar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_light_left_scancar"
+            android:layout_alignBottom="@+id/tv_light_left_scancar"
+            android:layout_toRightOf="@+id/tv_light_left_scancar"
+            android:text="好"
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+
+        <Button
+            android:id="@+id/btn_add_scancar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_light_left_scancar"
+            android:layout_marginTop="20dp"
+            android:text="添加到我的车库"
+            android:background="@drawable/bg_loginbtn"
+            android:padding="12dp"
+            android:textColor="#ffffff"/>
+    </RelativeLayout>
+
+</RelativeLayout>
