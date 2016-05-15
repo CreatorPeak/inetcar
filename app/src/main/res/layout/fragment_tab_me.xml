@@ -256,7 +256,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:src="@mipmap/car"/>
+                    android:src="@mipmap/icon_car"/>
                 <TextView
                     android:id="@+id/tv_tab_me_car"
                     android:layout_width="wrap_content"
@@ -299,7 +299,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:src="@mipmap/car"/>
+                    android:src="@mipmap/icon_weizhang"/>
                 <TextView
                     android:id="@+id/tv_tab_me_traffic"
                     android:layout_width="wrap_content"
@@ -347,7 +347,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:src="@mipmap/car"/>
+                    android:src="@mipmap/icon_jiayou"/>
                 <TextView
                     android:id="@+id/tv_tab_me_card"
                     android:layout_width="wrap_content"
@@ -422,7 +422,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:src="@mipmap/car"/>
+                    android:src="@mipmap/icon_order"/>
                 <TextView
                     android:id="@+id/tv_tab_me_order"
                     android:layout_width="wrap_content"
@@ -465,7 +465,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:src="@mipmap/car"/>
+                    android:src="@mipmap/icon_pay"/>
                 <TextView
                     android:id="@+id/tv_tab_me_pay"
                     android:layout_width="wrap_content"
@@ -533,7 +533,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/car"/>
+                    android:src="@mipmap/icon_road"/>
                 <TextView
                     android:id="@+id/tv_tab_me_road"
                     android:layout_width="wrap_content"
@@ -566,7 +566,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/car"/>
+                    android:src="@mipmap/icon_weather"/>
                 <TextView
                     android:id="@+id/tv_tab_me_weather"
                     android:layout_width="wrap_content"
@@ -622,7 +622,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/car"/>
+                    android:src="@mipmap/icon_usersetting"/>
                 <TextView
                     android:id="@+id/tv_tab_me_usersetting"
                     android:layout_width="wrap_content"
@@ -655,7 +655,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/car"/>
+                    android:src="@mipmap/icon_syssetting"/>
                 <TextView
                     android:id="@+id/tv_tab_me_systemsetting"
                     android:layout_width="wrap_content"

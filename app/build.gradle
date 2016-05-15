@@ -20,6 +20,7 @@ android {
     productFlavors {
     }
 
+    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/raw'] } }
 }
 
 dependencies {
@@ -31,4 +32,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:support-v4:23.2.1'
     compile files('libs/gson-2.2.4.jar')
+    compile files('libs/httpmime-4.0.jar')
+    compile files('libs/core-3.1.0.jar')
 }

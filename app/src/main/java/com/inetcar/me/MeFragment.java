@@ -1,15 +1,19 @@
 package com.inetcar.me;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,13 +29,18 @@ import com.inetcar.meg7.widget.CircleImageView;
 import com.inetcar.model.User;
 import com.inetcar.startup.LoginActivity;
 import com.inetcar.startup.R;
+import com.inetcar.tools.HandlerPicture;
 import com.inetcar.tools.MyResult;
+import com.inetcar.tools.NativeImageLoader;
 import com.inetcar.tools.NetWorkUtils;
 import com.inetcar.tools.ResultCodeUtils;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -63,6 +72,7 @@ public class MeFragment extends Fragment implements View.OnClickListener{
     private View view_photoWindow;
     private TextView tv_camera;  //拍照
     private TextView tv_album;  //从相册选取图片
+
     /**
      * Called when a fragment is first attached to its context.
      * {@link #onCreate(Bundle)} will be called after this.
@@ -161,8 +171,12 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         switch (v.getId()){
             case R.id.im_tab_me_user:  //点击头像按钮
             {
+                if(!isLogin){
+                    Toast.makeText(mContext,"请先登录",Toast.LENGTH_SHORT).show();
+                    break;
+                }
                 if(mPhotoWindow!=null && !mPhotoWindow.isShowing()){
-                    mPhotoWindow.showAtLocation(view_me, Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,0);
+                    mPhotoWindow.showAtLocation(view_me, Gravity.CENTER,0,0);
                 }
                 break;
             }
@@ -188,12 +202,22 @@ public class MeFragment extends Fragment implements View.OnClickListener{
                 this.getActivity().finish();
                 break;
             }
-            case R.id.tv_camera_photodialog:
+            case R.id.tv_camera_photodialog: //点击拍照按钮
             {
+                if(mPhotoWindow!=null && mPhotoWindow.isShowing()){
+                    mPhotoWindow.dismiss();
+                }
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); //调用相机拍照
+                startActivityForResult(intent,ResultCodeUtils.USE_CAMERA);
                 break;
             }
-            case R.id.tv_album_photodialog:
+            case R.id.tv_album_photodialog: //点击相册按钮
             {
+                if(mPhotoWindow!=null && mPhotoWindow.isShowing()){
+                    mPhotoWindow.dismiss();
+                }
+                Intent intent = new Intent(mContext,AlbumActivity.class);
+                startActivityForResult(intent,ResultCodeUtils.SELECT_IMAGE);
                 break;
             }
             default:
@@ -216,6 +240,142 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         }
     }
 
+    /**
+     * Receive the result from a previous call to
+     * {@link #startActivityForResult(Intent, int)}.  This follows the
+     * related Activity API as described there in
+     * {@link Activity#onActivityResult(int, int, Intent)}.
+     *
+     * @param requestCode The integer request code originally supplied to
+     *                    startActivityForResult(), allowing you to identify who this
+     *                    result came from.
+     * @param resultCode  The integer result code returned by the child activity
+     *                    through its setResult().
+     * @param data        An Intent, which can return result data to the caller
+     */
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case ResultCodeUtils.SELECT_IMAGE:
+            {
+                if(resultCode== Activity.RESULT_OK){
+
+                    String path = data.getStringExtra("path");
+                    //显示图片到头像控件
+                    Bitmap bitmap = NativeImageLoader.getInstance().loadNativeImage(path,
+                            new NativeImageLoader.NativeImageCallBack() {
+                        @Override
+                        public void onImageLoader(Bitmap bitmap, String path) {
+                            if(bitmap!=null){
+                                im_photo.setImageBitmap(bitmap);
+                                savePhoto(bitmap);
+                            }
+                        }
+                    });
+                    if(bitmap!=null){
+                        im_photo.setImageBitmap(bitmap);
+                        savePhoto(bitmap);
+                    }else{
+                        im_photo.setImageResource(R.mipmap.user_no_login);
+                    }
+                    //upLoadPhoto(path);
+                   // Log.d("path", "root path: "+mContext.getFilesDir());
+                }else{
+                    Toast.makeText(mContext,"未选择任何图片",Toast.LENGTH_SHORT).show();
+                }
+                break;
+            }
+            case ResultCodeUtils.USE_CAMERA:
+            {
+                if(resultCode== Activity.RESULT_OK){
+
+                    Toast.makeText(mContext,"拍照成功",Toast.LENGTH_SHORT).show();
+                    //不设定Uri，data中返回缩略图；设定uri，data==null
+                    Bitmap thumbnail = data.getParcelableExtra("data");
+                    Log.d("path", "缩略图：width:"+thumbnail.getWidth()+" height:"+
+                            thumbnail.getHeight());
+                    im_photo.setImageBitmap(thumbnail);
+                    //保存图片
+                    savePhoto(thumbnail);
+                }else{
+                    Toast.makeText(mContext,"取消拍照",Toast.LENGTH_SHORT).show();
+                }
+                break;
+            }
+            default:
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    /**
+     * 保存用户头像到内部存储
+     * @param bitmap
+     */
+    private void savePhoto(final Bitmap bitmap){
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                File file = new File(mContext.getFilesDir(),mUser.getPhone()+".png");
+                if(file.exists()){
+                    file.delete();
+                }
+                FileOutputStream out;
+                try {
+                    out = new FileOutputStream(file);
+                    if(bitmap.compress(Bitmap.CompressFormat.PNG,100,out)){
+                        out.flush();
+                        out.close();
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Message msg = mHandler.obtainMessage();
+                msg.what = ResultCodeUtils.SAVE_SUCCESS;
+                msg.obj = file.getAbsolutePath();
+                mHandler.sendMessage(msg);
+            }
+        }).start();
+
+    }
+
+    /**
+     * 上传文件到服务器
+     * @param @path  文件路径
+     */
+
+    /*
+    private void upLoadPhoto(String path){
+
+        try {
+            final FileBody filebody = new FileBody(new File(path));
+            final StringBody strBody = new StringBody(mUser.getPhone());
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        String result = NetWorkUtils.upLoad("/UpLoadPhotoServlet",
+                                filebody,strBody);
+                        if(result!=null){
+                            Message msg = mHandler.obtainMessage();
+                            msg.what = ResultCodeUtils.UPLOAD_SUCCESS;
+                            msg.obj = result;
+                            mHandler.sendMessage(msg);
+                        }else{
+                            mHandler.sendEmptyMessage(ResultCodeUtils.UPLOAD_FAILED);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }*/
     private  class MyHandler extends Handler{
         private WeakReference<MeFragment>mFragment;
 
@@ -264,6 +424,20 @@ public class MeFragment extends Fragment implements View.OnClickListener{
                                     tv_phone.setText(mUser.getPhone());
                                     isLogin = true;
 
+                                    mUser.setPhoto(sharedPreferences.getString("photo",null));
+
+                                    if(mUser.getPhoto()!=null && !mUser.getPhoto().isEmpty()){
+                                        File file = new File(mUser.getPhoto());
+                                        if(file.exists()){
+                                            Bitmap bitmap = HandlerPicture.cutPicture(mUser.getPhoto(),1);
+                                            if(bitmap!=null){
+                                                im_photo.setImageBitmap(bitmap);
+                                            }
+                                        }
+                                    }else{
+                                        Log.d("path", "user photo is null");
+                                    }
+
                                 }else{
                                     Toast.makeText(mContext,"数据解析异常",Toast.LENGTH_SHORT).show();
                                     linear_user.setVisibility(View.GONE);
@@ -296,6 +470,35 @@ public class MeFragment extends Fragment implements View.OnClickListener{
                     linear_login.setVisibility(View.VISIBLE);
                     isLogin = false;
                     break;
+                }
+                case ResultCodeUtils.SAVE_SUCCESS:  //文件保存成功
+                {
+                    mUser.setPhoto((String)msg.obj);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("photo",(String)msg.obj);
+                    editor.commit();
+                    Log.d("path","save success: " +(String)msg.obj);
+                    //头像保存成功才上传
+                    //upLoadPhoto((String)msg.obj);
+                    break;
+                }
+                case ResultCodeUtils.UPLOAD_FAILED:
+                {
+                    Toast.makeText(mContext,"头像上传失败，请联网",
+                            Toast.LENGTH_SHORT).show();
+                }
+                case ResultCodeUtils.UPLOAD_SUCCESS:
+                {
+                    String result = (String) msg.obj;
+                    MyResult myResult = mGson.fromJson(result,MyResult.class);
+                    if(myResult.getStatus()==306){
+                        Toast.makeText(mContext,"头像上传成功",
+                                Toast.LENGTH_SHORT).show();
+
+                    }else {
+                        Toast.makeText(mContext,myResult.getMsg(),
+                                Toast.LENGTH_SHORT).show();
+                    }
                 }
                 default:
                     break;

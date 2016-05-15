@@ -1,6 +1,8 @@
 package com.inetcar.main;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -14,9 +16,12 @@ import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.inetcar.map.MapFragment;
 import com.inetcar.me.MeFragment;
+import com.inetcar.model.Car;
 import com.inetcar.model.User;
 import com.inetcar.startup.R;
 import com.inetcar.tools.FragmentManager;
@@ -48,6 +53,9 @@ public class MainCarActivity extends FragmentActivity implements MapFragment.MyL
 
     private User mUser;     //当前登录用户
     private boolean isLogin = false;  //用户是否登录
+    private Gson mGson;
+
+    public final static int CAMERA_SACN = 10;   //扫描二维码
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +65,8 @@ public class MainCarActivity extends FragmentActivity implements MapFragment.MyL
 
         SharedPreferences sharedPreferences = getSharedPreferences(ResultCodeUtils.USERINFO,
                 Context.MODE_PRIVATE);
+
+        mGson = new Gson();
 
         mUser = (User) this.getIntent().getSerializableExtra("user");
         if(mUser!=null){
@@ -85,7 +95,7 @@ public class MainCarActivity extends FragmentActivity implements MapFragment.MyL
     public void initView() {
 
         left_titlebar = (RelativeLayout) findViewById(R.id.leftlayout_main_title_bar);
-        left_titlebar.setOnClickListener(this);
+        //left_titlebar.setOnClickListener(this);
         tv_adress = (TextView) findViewById(R.id.tv_left_main_title_bar);
 
         iv_menu = (ImageView) findViewById(R.id.im_menu_main_title_bar);
@@ -173,10 +183,34 @@ public class MainCarActivity extends FragmentActivity implements MapFragment.MyL
             }
             case R.id.tv_menu_scan: //扫一扫按钮
             {
+                Intent intent = new Intent(MainCarActivity.this,CameraActivity.class);
+                startActivityForResult(intent,CAMERA_SACN);
                 break;
             }
             default:
                 break;
         }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if(requestCode==CAMERA_SACN){
+            if(resultCode== Activity.RESULT_OK){
+                String result = data.getStringExtra("result");
+                try {
+                    Car car = mGson.fromJson(result, Car.class);
+                    Intent intent = new Intent(MainCarActivity.this,ScanCarActivity.class);
+                    intent.putExtra("car",car);
+                    startActivity(intent);
+                }catch (RuntimeException e){
+                    e.printStackTrace();
+                    Toast.makeText(this,"请扫描汽车二维码",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

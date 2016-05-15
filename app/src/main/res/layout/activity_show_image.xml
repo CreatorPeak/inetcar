@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0f6ad5"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/tv_back_showimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:layout_marginLeft="5dp"
+            android:padding="10dp"
+            android:drawableLeft="@mipmap/titlebar_back"
+            android:text="返回"/>
+
+        <TextView
+            android:id="@+id/tv_name_showimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="ScreenShot"
+            android:textSize="16sp"
+            android:textColor="#ffffff"/>
+
+    </RelativeLayout>
+    <GridView
+        android:id="@+id/grid_showimage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:descendantFocusability="blocksDescendants"
+        android:fadingEdge="none"
+        android:fastScrollEnabled="true"
+        android:scrollingCache="false"
+        android:numColumns="3"
+        android:layout_marginTop="5dp"
+        android:stretchMode="columnWidth"
+        >
+
+    </GridView>
+
+</LinearLayout>
