@@ -225,7 +225,6 @@ public class ScanCarActivity extends Activity implements View.OnClickListener,
         }
     }
 
-
     @Override
     protected void onStop() {
         if(loadingDialog!=null)
