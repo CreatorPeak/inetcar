@@ -2,6 +2,7 @@ package com.inetcar.map;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -20,18 +21,18 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
-import com.amap.api.maps2d.AMap;
-import com.amap.api.maps2d.AMapUtils;
-import com.amap.api.maps2d.CameraUpdateFactory;
-import com.amap.api.maps2d.LocationSource;
-import com.amap.api.maps2d.MapView;
-import com.amap.api.maps2d.UiSettings;
-import com.amap.api.maps2d.model.BitmapDescriptorFactory;
-import com.amap.api.maps2d.model.LatLng;
-import com.amap.api.maps2d.model.LatLngBounds;
-import com.amap.api.maps2d.model.Marker;
-import com.amap.api.maps2d.model.MarkerOptions;
-import com.amap.api.maps2d.model.MyLocationStyle;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.AMapUtils;
+import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.LocationSource;
+import com.amap.api.maps.MapView;
+import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.LatLngBounds;
+import com.amap.api.maps.model.Marker;
+import com.amap.api.maps.model.MarkerOptions;
+import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.geocoder.GeocodeResult;
@@ -99,7 +100,7 @@ public class MapFragment extends Fragment implements LocationSource,
 
     private DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
-    private GeocodeSearch mGeocodeSearch;
+    private GeocodeSearch mGeocodeSearch;   //地理编码查询
     private RegeocodeResult mRegeocodeResult;
     /**
      * 定位信息回调接口，用于和主FragmentActivity交互
@@ -324,7 +325,7 @@ public class MapFragment extends Fragment implements LocationSource,
             mLocationOption = new AMapLocationClientOption();
             //设置定位模式为高精度定位，Batter_saving为低功耗模式，Device_Sensors是仅设备模式
             mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);//
-            //设置定位间隔10s，默认2秒
+            //设置定位间隔6s，默认2秒
             mLocationOption.setInterval(6000);
             mLocationClient.setLocationOption(mLocationOption);
             mLocationClient.setLocationListener(this);
@@ -548,6 +549,8 @@ public class MapFragment extends Fragment implements LocationSource,
 
     @Override
     public void onClick(View v) {
+        linear_clicklocation.setVisibility(View.GONE);
+        linear_station.setVisibility(View.GONE);
         switch(v.getId()){
             case R.id.im_tab_map_search:
             case R.id.tv_tab_map_search://地点搜索按钮
@@ -560,10 +563,18 @@ public class MapFragment extends Fragment implements LocationSource,
             }
             case R.id.im_tab_map_station: //加油站按钮
             {
+                searchStation();
                 break;
             }
             case R.id.linear_station_navigation: //点击导航按钮
-            {
+           {
+               Intent  intent = new Intent(getActivity(),NaviGationActivity.class);
+               intent.putExtra("start_lat",lastLocation.getLatitude());
+               intent.putExtra("start_lon",lastLocation.getLongitude());
+               PoiItem item = (PoiItem) lastMarker.getObject();
+               intent.putExtra("end_lat",item.getLatLonPoint().getLatitude());
+               intent.putExtra("end_lon",item.getLatLonPoint().getLongitude());
+               startActivity(intent);
                 break;
             }
             case R.id.linear_station_detail: //点击详情按钮
@@ -576,6 +587,12 @@ public class MapFragment extends Fragment implements LocationSource,
             }
             case R.id.linear_clicklocation_navigation: //导航到点击地点
             {
+                Intent  intent = new Intent(getActivity(),NaviGationActivity.class);
+                intent.putExtra("start_lat",lastLocation.getLatitude());
+                intent.putExtra("start_lon",lastLocation.getLongitude());
+                intent.putExtra("end_lat",lastLatLng.latitude);
+                intent.putExtra("end_lon",lastLatLng.longitude);
+                startActivity(intent);
                 break;
             }case R.id.linear_clicklocation_search: //搜索点击地点周边
             {

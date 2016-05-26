@@ -21,17 +21,29 @@ android {
     }
 
     sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/raw'] } }
+
+//    task nativeLibsToJar(type: Zip, description: "create a jar archive of the native libs") {
+//        destinationDir file("$projectDir/libs")
+//        baseName "Native_Libs2"
+//        extension "jar"
+//        from fileTree(dir: "libs", include: "**/*.so")
+//        into "lib"
+//    }
+//
+//    tasks.withType(JavaCompile) {
+//        compileTask -> compileTask.dependsOn(nativeLibsToJar)
+//    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile files('libs/AMap_Location_V2.4.1_20160414.jar')
-    compile files('libs/AMap_Search_V3.2.1_20160308.jar')
-    compile files('libs/AMap_2DMap_V2.8.1_20160202.jar')
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:support-v4:23.2.1'
     compile files('libs/gson-2.2.4.jar')
     compile files('libs/httpmime-4.0.jar')
     compile files('libs/core-3.1.0.jar')
+    compile files('libs/AMap3DMap_3.3.2_AMapNavi_1.8.0_AMapSearch_3.2.1_AMapLocation_2.4.1_20160524.jar')
+    compile files('libs/Msc.jar')
+    compile files('libs/Sunflower.jar')
 }

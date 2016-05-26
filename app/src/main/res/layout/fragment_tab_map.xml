@@ -5,7 +5,7 @@
     >
 
     <!--3D地图组件-->
-    <com.amap.api.maps2d.MapView
+    <com.amap.api.maps.MapView
         android:id="@+id/mapview_tab_map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
@@ -13,7 +13,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
        >
 
         <RelativeLayout
@@ -83,7 +82,6 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="8dp"
             android:layout_marginRight="15dp"
-
             android:padding="2dp"
             android:background="@drawable/bg_navigationbar_station"
             />
@@ -97,11 +95,10 @@
         android:layout_height="wrap_content"
         android:background="#ffffff"
         android:paddingTop="10dp"
-        android:paddingBottom="8dp"
+        android:paddingBottom="5dp"
         android:layout_gravity="bottom"
         android:visibility="gone"
         >
-
         <TextView
             android:id="@+id/tv_station_title"
             android:layout_width="match_parent"
@@ -146,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="2dp"
+                android:padding="5dp"
                 android:orientation="horizontal">
                 <ImageView
                     android:layout_width="wrap_content"
@@ -157,8 +154,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
                     android:text="导航"
-                    android:layout_marginLeft="3dp"
-                    android:textSize="13sp"/>
+                    android:layout_marginLeft="5dp"
+                    android:textSize="15sp"/>
 
             </LinearLayout>
 
@@ -174,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="2dp"
+                android:padding="5dp"
                 android:orientation="horizontal">
                 <ImageView
                     android:layout_width="wrap_content"
@@ -185,8 +182,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
                     android:text="详情"
-                    android:layout_marginLeft="3dp"
-                    android:textSize="13sp"/>
+                    android:layout_marginLeft="5dp"
+                    android:textSize="15sp"/>
 
             </LinearLayout>
 
@@ -203,7 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="2dp"
+                android:padding="5dp"
                 android:orientation="horizontal">
                 <ImageView
                     android:layout_width="wrap_content"
@@ -214,8 +211,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
                     android:text="其它油站"
-                    android:layout_marginLeft="3dp"
-                    android:textSize="13sp"/>
+                    android:layout_marginLeft="5dp"
+                    android:textSize="15sp"/>
 
             </LinearLayout>
 
@@ -230,7 +227,7 @@
         android:layout_height="wrap_content"
         android:background="#ffffff"
         android:paddingTop="10dp"
-        android:paddingBottom="8dp"
+        android:paddingBottom="5dp"
         android:layout_gravity="bottom"
         android:visibility="gone"
         >
@@ -242,7 +239,7 @@
             android:textColor="#000000"
             android:text="中国石油西安站,距您5.0公里"
             android:layout_marginLeft="10dp"
-            android:textSize="14sp"/>
+            android:textSize="15sp"/>
 
 
         <LinearLayout
@@ -271,8 +268,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
                     android:text="导航"
-                    android:layout_marginLeft="3dp"
-                    android:textSize="12sp"/>
+                    android:layout_marginLeft="5dp"
+                    android:textSize="15sp"/>
 
             </LinearLayout>
 
@@ -299,8 +296,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
                     android:text="搜周边"
-                    android:layout_marginLeft="3dp"
-                    android:textSize="12sp"/>
+                    android:layout_marginLeft="5dp"
+                    android:textSize="15sp"/>
 
             </LinearLayout>
 

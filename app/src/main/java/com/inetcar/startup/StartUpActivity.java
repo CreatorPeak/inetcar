@@ -8,6 +8,9 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechUtility;
 import com.inetcar.main.MainCarActivity;
 import java.lang.ref.WeakReference;
 
@@ -58,9 +61,9 @@ public class StartUpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_up);
         init();
+        //创建语音配置对象，只有初始化后才可以使用MSC的各项服务
+        SpeechUtility.createUtility(this.getApplicationContext(), SpeechConstant.APPID+"=57469bac");
     }
-
-
 
     private void init(){
 
@@ -83,7 +86,6 @@ public class StartUpActivity extends Activity {
             handler.sendEmptyMessageDelayed(MSG_MAIN,1000);
         }
     }
-
 
     /**
      * 跳转到FirstInActivity
